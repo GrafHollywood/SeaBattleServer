@@ -15,7 +15,7 @@ public:
 	vector <CShip*> m_Ships; //массив с кораблями игрока
 
 	SOCKET m_sock; //сокет игрока
-	DWORD WINAPI PrepareShips(); 
+	bool PrepareShips();
 	bool ShipsAreReady();
 	bool DoMove();
 

@@ -13,8 +13,5 @@ int main()
 	
 	if (game.StartTCP(10000))
 		game.DoPlay();
-
-
-   
 }
 

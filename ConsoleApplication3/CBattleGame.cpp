@@ -79,7 +79,7 @@ bool CBattleGame::StartTCP(int port)
 
 	// вывод сведений о клиенте
 	printf("Игрок1 с IP [%s] на связи!\n", inet_ntoa(client_addr.sin_addr));
-
+	
 	client_socket = accept(mysocket, (sockaddr*)&client_addr, &client_addr_size);
 
 	m_Player2.m_sock = client_socket;
@@ -88,7 +88,7 @@ bool CBattleGame::StartTCP(int port)
 
 	// вывод сведений о клиенте
 	printf("Игрок2 с IP [%s] на связи!\n", inet_ntoa(client_addr.sin_addr));
-
+	
 	return true;
 }
 

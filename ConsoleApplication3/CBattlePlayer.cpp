@@ -23,7 +23,7 @@ void CBattlePlayer::Message(string str)
 	send(m_sock, str.c_str(), str.size() + 1, 0);
 }
 
-DWORD WINAPI CBattlePlayer::PrepareShips()
+bool CBattlePlayer::PrepareShips()
 {
 	Message("Расставляйте корабли!");
 
@@ -111,7 +111,9 @@ bool CBattlePlayer::ShipsAreReady()
 		}
 	}
 
-	if (n1Deck == 4 && n2Deck == 3 && n3Deck == 2 && n4Deck == 1)
+	/*if (n1Deck == 4 && n2Deck == 3 && n3Deck == 2 && n4Deck == 1)
+		return true;*/
+	if (n4Deck == 1)
 		return true;
 	else
 		return false;
