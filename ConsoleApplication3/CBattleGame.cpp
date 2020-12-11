@@ -3,6 +3,7 @@
 
 #pragma comment (lib, "ws2_32.lib")
 #include <iostream>
+#include <thread>
 
 #include "winsock2.h" 
 
@@ -94,18 +95,10 @@ bool CBattleGame::StartTCP(int port)
 
 void CBattleGame::DoPlay()
 {
-	m_Player2.Message("Соперник расставляет корабли. Подождите некоторое время.");
-
-	if (m_Player1.PrepareShips())
-	{
-		m_Player1.Message("Соперник расставляет корабли. Подождите некоторое время.");
-
-	}
-	if (!m_Player2.PrepareShips())
-	{
-		return;
-	}
-
+	thread th1(m_Player1.PrepareShips, &m_Player1);
+	m_Player2.PrepareShips(&m_Player2);
+	
+	th1.join();
 	while (m_Player1.IsAlive() and m_Player2.IsAlive())
 	{
 		if (m_iCurrentMove == MOVE1)

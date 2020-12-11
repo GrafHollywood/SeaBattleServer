@@ -15,7 +15,7 @@ public:
 	vector <CShip*> m_Ships; //массив с кораблями игрока
 
 	SOCKET m_sock; //сокет игрока
-	bool PrepareShips();
+	static bool PrepareShips(CBattlePlayer* player);
 	bool ShipsAreReady();
 	bool DoMove();
 

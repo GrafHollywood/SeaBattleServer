@@ -23,25 +23,25 @@ void CBattlePlayer::Message(string str)
 	send(m_sock, str.c_str(), str.size() + 1, 0);
 }
 
-bool CBattlePlayer::PrepareShips()
+bool CBattlePlayer::PrepareShips(CBattlePlayer* player)
 {
-	Message("Расставляйте корабли!");
+	player->Message("Расставляйте корабли!");
 
-	while (!ShipsAreReady())
+	while (!player->ShipsAreReady())
 	{
-		if (Try2PlaceShip(recieve()))
+		if (player->Try2PlaceShip(player->recieve()))
 		{
-			Message("OK");
+			player->Message("OK");
 		}
 		else
 		{
-			Message("Ошибка в расположении корабля!");
+			player->Message("Ошибка в расположении корабля!");
 		}
 		//Message(m_Aqua.PrintForeign());
-		if (ShipsAreReady())
-			Message("Ваши корабли готовы!");
+		if (player->ShipsAreReady())
+			player->Message("Ваши корабли готовы!");
 		else
-			Message("Поставьте еще корабли!");
+			player->Message("Поставьте еще корабли!");
 	}
 
 	return true;
@@ -113,7 +113,7 @@ bool CBattlePlayer::ShipsAreReady()
 
 	/*if (n1Deck == 4 && n2Deck == 3 && n3Deck == 2 && n4Deck == 1)
 		return true;*/
-	if (n4Deck == 1)
+	if (n4Deck == 1) //для проверки
 		return true;
 	else
 		return false;
