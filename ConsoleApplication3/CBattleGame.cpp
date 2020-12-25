@@ -96,9 +96,10 @@ bool CBattleGame::StartTCP(int port)
 void CBattleGame::DoPlay()
 {
 	thread th1(m_Player1.PrepareShips, &m_Player1);
-	m_Player2.PrepareShips(&m_Player2);
-	
+	thread th2(m_Player2.PrepareShips, &m_Player2);
 	th1.join();
+	th2.join();
+
 	while (m_Player1.IsAlive() and m_Player2.IsAlive())
 	{
 		if (m_iCurrentMove == MOVE1)

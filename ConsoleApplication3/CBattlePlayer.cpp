@@ -54,7 +54,6 @@ bool CBattlePlayer::DoMove()
 	CShip* ship = NULL;
 	if (m_pAnotherPlayer->m_Aqua.TestShip(move, &ship))
 	{
-		Message("Попадание!");
 
 		if (!ship->Alive())
 		{
@@ -62,10 +61,16 @@ bool CBattlePlayer::DoMove()
 
 			if (!m_pAnotherPlayer->IsAlive())
 			{
-				Message("Вы выиграли(");
+				Message("Вы выиграли");
 				m_pAnotherPlayer->Message("Вы проиграли(");
+				recieve();
+				m_pAnotherPlayer->recieve();
 				return true;
 			}
+		}
+		else
+		{
+			Message("Попадание!");
 		}
 
 		DoMove();
